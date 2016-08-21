@@ -1,1 +1,20 @@
 This is MongoDB tutorial for Golang using mgo.
+
+This might seem very simple but I have written this as a very basic material to those starting with MongoDB using Golang. I found the lack of one of this kind like a bit of a blocker as it sent me in the wrong direction what with strange issues. 
+
+Steps -- 
+
+1. You can either create the database and the collecton using in your mongo shell but it's not necessary. It would be created by defult if it's not already present. 
+2. In Golang you start with by setting up a connection to the database as in all languages but here we call it Dial or Dialling.
+3. From then on it is more about how you handle the data or data parsing. You do that using a struct and you would know this if you tried your hands on json stuff with golang.
+   For those not aware of this, let me give you more details. 
+   Unlike structs in C or C++ or any other language for that matter, in golang you can use an additional literal separated by backticks like an attribute. This is very helpful if you want to map this structure to any JSON data in which case you use the JSON key as used in JSON inside the backtick like --
+Username string `bson:"username"` for { "username":"some_name" }
+
+You see bson here as that is how internally data is stored in mongodb. Don't about that. Please do note that the variables inside the struct need to start with an uppercase letter else all fails.
+
+This attribute like function is a MUST when using with mongodb as mgo needs this for it to work.
+
+I WANTED TO CONVEY THIS POINT FOR WHICH I PUT UP THIS TUTOTRIAL
+4. The rest is as you see very simple.    
+
