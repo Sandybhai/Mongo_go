@@ -3,15 +3,13 @@ package main
 import (
 	"fmt"
 	"gopkg.in/mgo.v2"
-//	"gopkg.in/mgo.v2/bson"
 	"log"
 	"os"
-//	"time"
 )
 
 type userInfo struct {
   Username string `bson:"username"`           // Has to start with an uppercase else fails
-  Pass     string	`bson:"pass"`
+  Pass     string `bson:"pass"`
 }
 
 func connect() (session *mgo.Session) {
@@ -26,13 +24,10 @@ func connect() (session *mgo.Session) {
 }
 
 func main() {
-  session := connect()
-  defer session.Close()
-
-  //result := userInfo {}
-	//var result interface{}
+	session := connect()
+  	defer session.Close()
 	var results []userInfo
-  collection := session.DB("sandyman").C("userslist")
+	collection := session.DB("sandyman").C("userslist")
 
 	err := collection.Insert(&userInfo{Username: "Alex", Pass: "cool"})
 	if err != nil {
@@ -40,15 +35,12 @@ func main() {
 		log.Println(err)
 	}
 
-
-  //err := collection.Find(bson.M{"username": "raghu").One(&result)
-	erre := collection.Find(nil).All(&results)
-        if err != nil {
-                //log.Fatal(err)
+	errr := collection.Find(nil).All(&results)
+        if errr != nil {
                 log.Println("Not in db")
-								log.Println(erre)
+		log.Println(errr)
                 return
         }
-				 fmt.Println("Results All: ", results)
-        //fmt.Println("Username:", result.pass)
+	fmt.Println("Results All: ", results)
+        
 }
